@@ -38,10 +38,14 @@ set_device_boost:
 set_device_type_1_block_solar_heating:
   name: Set Block Solar Heating
   description: Enable or disable block_solar_heating for a Smart Slave (deviceType=1)
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = block solar heating, False = allow solar heating
@@ -52,10 +56,14 @@ set_device_type_1_block_solar_heating:
 set_device_type_1_keep_heated:
   name: Set Keep Heated
   description: Enable or disable 3.1 Keep Heated (settings[*].power.ignore_cycle) for Smart Slave devices (deviceType=1).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = keep heated enabled, False = disabled.
@@ -66,10 +74,14 @@ set_device_type_1_keep_heated:
 set_device_type_1_block_heating_from_battery:
   name: Set Block Heating From Battery
   description: Enable or disable 3.3 Block Heating From Battery (settings[*].power.block_heating_from_battery) for Smart Slave devices (deviceType=1).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = block heating from battery, False = allow.
@@ -80,10 +92,14 @@ set_device_type_1_block_heating_from_battery:
 set_device_type_1_allow_solar_heating_only_in_time_window:
   name: Set Allow Solar Heating Only In Time Window
   description: Enable or disable 3.4 time-window constraint (settings[*].power.allowed_solar_heating_time.enabled) for Smart Slave devices (deviceType=1).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = allow only in configured time window, False = ignore time window.
@@ -94,10 +110,14 @@ set_device_type_1_allow_solar_heating_only_in_time_window:
 set_device_type_1_boost_mode:
   name: Set Boost Mode
   description: Set 4.2 Boost Mode for Smart Slave devices (deviceType=1).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     mode:
       name: Mode
       description: One of manual, hdo, window, window+hdo (or numeric 0..3).
@@ -118,10 +138,14 @@ set_device_type_1_boost_mode:
 set_device_type_1_connected_phase:
   name: Set Connected Phase
   description: Connect or disconnect a specific boiler phase (1.1/1.2/1.3) for Smart Slave devices (deviceType=1).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Smart Slave device (deviceType=1).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     phase:
       name: Phase
       description: Phase number to modify (1, 2, or 3).
@@ -196,10 +220,14 @@ set_device_type_1_temperatures:
 set_device_type_4_block_charging:
   name: Wallbox – Block Charging
   description: Enable or disable 1. Block Charging for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = block charging, False = allow charging.
@@ -210,10 +238,14 @@ set_device_type_4_block_charging:
 set_device_type_4_prioritize_when_connected:
   name: Wallbox – Prioritize When Connected
   description: Enable or disable 2. Prioritize When Connected (mode[0].enabled) for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = prioritize when connected, False = disable this mode.
@@ -224,10 +256,14 @@ set_device_type_4_prioritize_when_connected:
 set_device_type_4_block_solar_charging:
   name: Wallbox – Block Solar Charging
   description: Enable or disable 3. Block Solar Charging for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = block solar charging, False = allow solar charging.
@@ -238,10 +274,14 @@ set_device_type_4_block_solar_charging:
 set_device_type_4_block_charging_from_battery:
   name: Wallbox – Block Charging From Battery
   description: Enable or disable 4. Block Charging From Battery for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = block charging from battery, False = allow charging from battery.
@@ -252,10 +292,14 @@ set_device_type_4_block_charging_from_battery:
 set_device_type_4_allow_solar_charging_only_in_time_window:
   name: Wallbox – Allow Solar Charging Only In Time Window
   description: Enable or disable 6.1 time-window restriction for solar charging on Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = allow solar charging only in the configured time window, False = ignore the time window.
@@ -266,10 +310,14 @@ set_device_type_4_allow_solar_charging_only_in_time_window:
 set_device_type_4_trigger_phase:
   name: Wallbox – Triggering Phase
   description: Set 5. Triggering Phase for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     phase:
       name: Phase
       description: Trigger phase to use (L1, L2, or L3).
@@ -288,10 +336,14 @@ set_device_type_4_trigger_phase:
 set_device_type_4_apply_only_if_cloud_is_offline:
   name: Wallbox – Apply Only If Cloud Is Offline
   description: Enable or disable 8. Apply Only If Cloud Is Offline for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = apply only when cloud is offline, False = always apply.
@@ -302,10 +354,14 @@ set_device_type_4_apply_only_if_cloud_is_offline:
 set_device_type_4_time_window_charging_enabled:
   name: Wallbox – Time Window Charging Enabled
   description: Enable or disable 9.1 Time Window Charging Enabled (mode[2].enabled) for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = enable time window charging mode, False = disable it.
@@ -316,10 +372,14 @@ set_device_type_4_time_window_charging_enabled:
 set_device_type_4_hdo_charging_enabled:
   name: Wallbox – HDO Charging Enabled
   description: Enable or disable 10.1 HDO Charging Enabled (mode[3].enabled) for Wallbox devices (deviceType=4).
-  target:
-    device:
-      integration: azrouter
   fields:
+    device_id:
+      name: Device
+      description: Select a Wallbox device (deviceType=4).
+      required: true
+      selector:
+        device:
+          integration: azrouter
     enabled:
       name: Enabled
       description: True = enable HDO charging mode, False = disable it.

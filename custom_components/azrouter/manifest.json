@@ -1,14 +1,14 @@
 {
   "domain": "azrouter",
   "name": "A-Z Router",
-  "version": "2026.03.10.1",
-  "documentation": "https://github.com/Jenik5/azrouter#readme",
-  "issue_tracker": "https://github.com/Jenik5/azrouter/issues",
-  "integration_type": "hub",
   "codeowners": [
     "@Jenik5"
   ],
-  "requirements": [],
   "config_flow": true,
-  "iot_class": "local_polling"
+  "documentation": "https://github.com/Jenik5/azrouter#readme",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Jenik5/azrouter/issues",
+  "requirements": [],
+  "version": "2026.03.10.1"
 }
