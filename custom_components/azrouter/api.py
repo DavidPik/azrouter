@@ -30,6 +30,9 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
+FULL_REFRESH_RETRY_DELAY = 0.75
+FULL_REFRESH_ENDPOINT_COUNT = 4
+
 
 class AzRouterClient:
     """Async client for AZ Router API."""
@@ -198,10 +201,8 @@ class AzRouterClient:
     # Combined fetch for DataUpdateCoordinator
     # -------------------------------------------------------------------------
 
-    async def async_get_all_data(self) -> Dict[str, Any]:
-        """Fetch power + status + devices + settings."""
-        _LOGGER.debug("async_get_all_data – start")
-
+    async def _async_get_all_data_once(self) -> tuple[Dict[str, Any], int]:
+        """Fetch power + status + devices + settings once and count endpoint failures."""
         tasks = [
             self.async_get_power(),
             self.async_get_status(),
@@ -213,11 +214,9 @@ class AzRouterClient:
         r_power, r_status, r_devices, r_settings = results
 
         failures = [result for result in results if isinstance(result, Exception)]
-        if len(failures) == len(results):
-            raise RuntimeError("All API endpoints failed during data update")
         if failures:
             _LOGGER.warning(
-                "Partial API update failure: %d/%d endpoints failed",
+                "API update failure: %d/%d endpoints failed",
                 len(failures),
                 len(results),
             )
@@ -246,7 +245,30 @@ class AzRouterClient:
             "master_data": master_list,
             "devices": devices,
             "settings": settings,
-        }
+        }, len(failures)
+
+    async def async_get_all_data(self) -> Dict[str, Any]:
+        """Fetch power + status + devices + settings with one immediate retry on full failure."""
+        _LOGGER.debug("async_get_all_data – start")
+
+        data, failure_count = await self._async_get_all_data_once()
+        if failure_count < FULL_REFRESH_ENDPOINT_COUNT:
+            return data
+
+        _LOGGER.warning(
+            "All API endpoints failed during data update, retrying once in %.2fs",
+            FULL_REFRESH_RETRY_DELAY,
+        )
+        await asyncio.sleep(FULL_REFRESH_RETRY_DELAY)
+
+        data, failure_count = await self._async_get_all_data_once()
+        if failure_count < FULL_REFRESH_ENDPOINT_COUNT:
+            _LOGGER.warning(
+                "AZ Router data update recovered on immediate retry after full refresh failure"
+            )
+            return data
+
+        raise RuntimeError("All API endpoints failed during data update")
 
     # -------------------------------------------------------------------------
     # Master write operations

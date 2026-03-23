@@ -4,6 +4,12 @@
 
 > 🔴 **Important migration warning / Dulezite migracni upozorneni:** This update can recreate some entities with new names or unique IDs. Old entities can disappear and new ones can be created. After upgrade, review dashboards, custom panels, automations, and helpers that reference AZ Router entities.
 
+## 2026.03.23.1 - 2026-03-23
+
+### Changed
+- Added one immediate retry for full refresh failures when all AZ Router API endpoints fail in the same polling cycle.
+- This reduces short transient disconnects when the device briefly stops responding and recovers within about one second.
+
 ## 2026.03.10.2 - 2026-03-10
 
 ### Changed
