@@ -17,9 +17,6 @@ Native Home Assistant integration for devices from the **A-Z Router** ecosystem:
 
 The integration focuses on direct API control, correct Home Assistant entities, and predictable device-level services.
 
-![Migration warning](https://img.shields.io/badge/Migration%20warning-entity%20IDs%20may%20change-red.svg)
-> 🔴 **Important migration warning:** This release can recreate some entities with new names or unique IDs. After upgrade, some old entities can disappear and new ones can be created. Check dashboards, panels, automations, and helpers that reference AZ Router entities.
-
 ---
 
 ## Features
@@ -174,9 +171,6 @@ Nativní integrace pro zařízení rodiny **A-Z Router**:
 - další kompatibilní A-Z zařízení používající stejné API
 
 Integrace je zaměřená na přímou práci s API, správné Home Assistant entity a předvídatelné služby na úrovni zařízení.
-
-![Migrační upozornění](https://img.shields.io/badge/Migrace-entity%20se%20mohou%20zm%C4%9Bnit-red.svg)
-> 🔴 **Důležité migrační upozornění:** Tato verze může některé entity vytvořit znovu pod novým názvem nebo s novým `unique_id`. Po aktualizaci tak mohou některé staré entity zaniknout a vzniknout nové. Po upgradu zkontrolujte dashboardy, uživatelské panely, automatizace i helpery, které na entity AZ Routeru odkazují.
 
 ---
 
