@@ -35,6 +35,7 @@ class BaseEntity(CoordinatorEntity):
         devclass: Optional[Any] = None,
         device_key: str = "",
         entity_category: EntityCategory | None = None,
+        state_class: SensorStateClass | None = None, #NEW
     ) -> None:
         super().__init__(coordinator)
         self._entry = entry
@@ -51,7 +52,7 @@ class BaseEntity(CoordinatorEntity):
             self._attr_entity_category = entity_category
 
         # state_class for sensors - concrete classes set this if needed
-        self._state_class = None
+        self._state_class = state_class #NEW
 
     def _build_router_id(self) -> str:
         """Build stable router ID from configured host."""
@@ -61,6 +62,9 @@ class BaseEntity(CoordinatorEntity):
         return netloc
 
     @property
+    def state_class(self) -> SensorStateClass | None: #NEW
+        return getattr(self, "_attr_state_class", None)
+        
     def device_info(self) -> DeviceInfo:
         ident = f"{self._router_id}"
         if self._device_key:
