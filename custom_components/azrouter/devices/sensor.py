@@ -15,7 +15,10 @@ from typing import Any, Dict
 import logging
 from types import SimpleNamespace
 
-from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    SensorStateClass, #NEW
+)
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.entity import EntityCategory
@@ -42,6 +45,7 @@ class DeviceBase(BaseEntity):
         icon: str | None = None,
         entity_category: EntityCategory | None = None,
         model: str | None = None,
+        state_class: SensorStateClass | None=None, #NEW
     ) -> None:
         super().__init__(
             coordinator=coordinator,
@@ -52,6 +56,7 @@ class DeviceBase(BaseEntity):
             devclass=devclass,
             device_key="",
             entity_category=entity_category,
+            state_class=state_class, #NEW
         )
 
         self._device = device
@@ -88,7 +93,11 @@ class DeviceBase(BaseEntity):
     @property
     def device_cfg(self):
         return self._device_cfg
-
+ 
+    @property
+    def state_class(self):
+        return getattr(self, "_attr_state_class", None)
+    
     @property
     def device_info(self) -> DeviceInfo:
         if self._device_model_override:
