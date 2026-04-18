@@ -15,6 +15,7 @@ from urllib.parse import urlparse
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
+from homeassistant.components.sensor import SensorStateClass #NEW
 
 from .const import DOMAIN
 from .devices.helpers import _dig, _get_value  # re-exported helpers for backward compatibility
@@ -52,7 +53,7 @@ class BaseEntity(CoordinatorEntity):
             self._attr_entity_category = entity_category
 
         # state_class for sensors - concrete classes set this if needed
-        self._state_class = state_class #NEW
+        self._attr_state_class = state_class #NEW
 
     def _build_router_id(self) -> str:
         """Build stable router ID from configured host."""
@@ -64,7 +65,8 @@ class BaseEntity(CoordinatorEntity):
     @property
     def state_class(self) -> SensorStateClass | None: #NEW
         return getattr(self, "_attr_state_class", None)
-        
+
+    @property
     def device_info(self) -> DeviceInfo:
         ident = f"{self._router_id}"
         if self._device_key:
