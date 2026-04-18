@@ -13,7 +13,11 @@ from __future__ import annotations
 from typing import Any, Dict, List, Tuple
 import logging
 
-from homeassistant.components.sensor import SensorEntity, SensorDeviceClass
+from homeassistant.components.sensor import (
+    SensorEntity,
+    SensorDeviceClass,
+    SensorStateClass, #NEW
+)
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import UnitOfSoundPressure, UnitOfPower, UnitOfTemperature
 from homeassistant.helpers.entity import EntityCategory
