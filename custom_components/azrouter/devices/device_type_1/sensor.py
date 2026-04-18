@@ -220,6 +220,7 @@ async def async_create_device_entities(
                         raw_path=path,
                         unit=UnitOfPower.WATT,
                         devclass=SensorDeviceClass.POWER,
+                        state_class=SensorStateClass.MEASUREMENT, #NEW
                     )
                 )
 
@@ -235,6 +236,7 @@ async def async_create_device_entities(
                         raw_path=path,
                         unit=UnitOfPower.WATT,
                         devclass=SensorDeviceClass.POWER,
+                        state_class=SensorStateClass.MEASUREMENT, #NEW
                     )
                 )
 
