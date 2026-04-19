@@ -404,6 +404,7 @@ class DeviceNumericSensor(DeviceBase, SensorEntity):
         devclass: SensorDeviceClass | None = None,
         icon: str | None = None,
         entity_category: EntityCategory | None = None,
+        state_class: SensorStateClass | None = None,
     ) -> None:
         super().__init__(
             coordinator=coordinator,
@@ -417,6 +418,7 @@ class DeviceNumericSensor(DeviceBase, SensorEntity):
             icon=icon,
             entity_category=entity_category,
             model=MODEL_DEVICE_TYPE_1,
+            state_class=state_class,   # NEW
         )
 
     @property
