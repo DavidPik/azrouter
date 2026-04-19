@@ -146,6 +146,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                     raw_path=path,
                     unit=UnitOfPower.WATT,
                     devclass=SensorDeviceClass.POWER,
+                    state_class=SensorStateClass.MEASUREMENT,
                 )
             )
 
@@ -160,6 +161,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                         raw_path="power.input.power.total",  # special raw_path handled by the class
                         unit=UnitOfPower.WATT,
                         devclass=SensorDeviceClass.POWER,
+                        state_class=SensorStateClass.MEASUREMENT,
                     )
                 )
             continue
@@ -196,6 +198,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                         raw_path=path,
                         unit=UnitOfPower.WATT,
                         devclass=SensorDeviceClass.POWER,
+                        state_class=SensorStateClass.MEASUREMENT,
                     )
                 )
                 continue
@@ -211,6 +214,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                         raw_path=path,
                         unit=UnitOfPower.WATT,
                         devclass=SensorDeviceClass.POWER,
+                        state_class=SensorStateClass.MEASUREMENT,
                     )
                 )
                 continue
@@ -228,6 +232,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                         unit=UnitOfEnergy.KILO_WATT_HOUR,
                         devclass=SensorDeviceClass.ENERGY,
                         entity_category=EntityCategory.DIAGNOSTIC,
+                        state_class=SensorStateClass.MEASUREMENT,
                     )
                 )
                 continue
@@ -288,6 +293,7 @@ async def async_create_entities(coordinator, entry: ConfigEntry) -> List[SensorE
                         unit=UnitOfEnergy.KILO_WATT_HOUR,
                         devclass=SensorDeviceClass.ENERGY,
                         entity_category=EntityCategory.DIAGNOSTIC,
+                        state_class=SensorStateClass.MEASUREMENT,
                     )
                 )
                 continue
@@ -546,6 +552,7 @@ class AzRouterScalarSensor(MasterBase, SensorEntity):
         unit=None,
         devclass=None,
         entity_category: EntityCategory | None = None,
+        state_class: SensorStateClass | None = None,   # NEW
     ) -> None:
         super().__init__(
             coordinator=coordinator,
@@ -556,6 +563,7 @@ class AzRouterScalarSensor(MasterBase, SensorEntity):
             unit=unit,
             devclass=devclass,
             entity_category=entity_category,
+            state_class=state_class,   # NEW
         )
 
         if unit is not None:
@@ -729,6 +737,7 @@ class AzRouterTimestampSensor(MasterBase, SensorEntity):
         unit=None,
         devclass=None,
         entity_category: EntityCategory | None = None,
+        state_class: SensorStateClass | None = None,   # NEW
     ) -> None:
         super().__init__(
             coordinator=coordinator,
@@ -739,6 +748,7 @@ class AzRouterTimestampSensor(MasterBase, SensorEntity):
             unit=unit,
             devclass=devclass,
             entity_category=entity_category,
+            state_class=state_class,   # NEW
         )
 
         if unit is not None:
